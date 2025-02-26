@@ -109,8 +109,6 @@ body {
 }
 .open .letter.expand {
     transform: translatey(-170px);
-    transition: transform 0.4s 0.6s ease, z-index 3s;
-    z-index: 3;
 }
 .hearts {
     position: absolute;
