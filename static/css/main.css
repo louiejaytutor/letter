@@ -1,0 +1,219 @@
+:root {
+    --color-1: #ffb6c1;
+    --color-2: #ffd1dc;
+    --color-3: #ffe4e1;
+    --color-4: #fff0f5;
+    --color-5: #faebd7;
+}
+
+* {
+    user-select: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color:  var(--color-4);
+}
+.envelope-wrapper {
+    height: 380px;
+    zoom: 120%;
+}
+
+#envelope {
+    position: relative;
+    width: 280px;
+    height: 180px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 150px;
+    background-color: var(--color-1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.front {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 3;
+}
+.flap {
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-bottom: 82px solid transparent;
+    border-top: 98px solid var(--color-1);
+    transform-origin: top;
+}
+.pocket {
+    border-left: 140px solid var(--color-3);
+    border-right: 140px solid var(--color-3);
+    border-bottom: 90px solid var(--color-2);
+    border-top: 90px solid transparent;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.letter {
+    position: relative;
+    background-color: #fff;
+    width: calc(90% - 20px);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    height: calc(90% - 20px);
+    top: 5%;
+    border-radius: 6px;
+    box-shadow: 0 2px 26px rgba(0, 0, 0, .12);
+}
+.letter span {
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 8px;
+    font-family: "Lucida Handwriting";
+    display: block;
+    margin: 5px;
+}
+.letter span:nth-child(1),
+.letter span:nth-child(3) {
+    font-weight: bold;
+}
+.letter span:nth-child(2) {
+    text-indent: 10px;
+}
+.open .flap {
+    transform: rotatex(180deg);
+    transition: transform 0.4s ease, z-index 0.6s;
+    z-index: 1;
+}
+.close .flap {
+    transform: rotatex(0deg);
+    transition: transform 0.4s 0.6s ease, z-index 1s;
+    z-index: 5;
+}
+.close .letter {
+    transform: translatey(0px);
+    transition: transform 0.4s ease, z-index 1s;
+    z-index: 1;
+}
+.open .letter {
+    transform: translatey(-20px);
+    transition: transform 0.4s 0.6s ease, z-index 0.6s;
+    z-index: 2;
+}
+.open .letter.expand {
+    transform: translatey(-170px);
+    transition: transform 0.4s 0.6s ease, z-index 3s;
+    z-index: 3;
+}
+.hearts {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+.heart {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+}
+.heart:before, .heart:after {
+    position: absolute;
+    content: '';
+    left: 50px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: #b22222;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+.close .heart {
+    opacity: 0;
+    animation: none;
+}
+.open .heart:nth-child(1) {
+    left: 20%;
+    transform: scale(0.6);
+    opacity: 1;
+    animation: slideUp 4s linear 1, sideSway 2s  ease-in-out 4 alternate, z-index 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.7s;
+    z-index: 1;
+}
+.open .heart:nth-child(2) {
+    left: 55%;
+    transform: scale(1);
+    opacity: 1;
+    animation: slideUp 5s linear 1, sideSway 4s  ease-in-out 2 alternate, z-index 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.7s;
+    z-index: 1;
+}
+.open .heart:nth-child(3) {
+    left: 10%;
+    transform: scale(0.8);
+    opacity: 1;
+    animation: slideUp 7s linear 1, sideSway 2s  ease-in-out 6 alternate, z-index 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.7s;
+    z-index: 1;
+}
+
+.buttons {
+    text-align: center;
+    white-space: nowrap;
+}
+.buttons button {
+    font-weight: bold;
+    font-style: normal;
+    transition: all 0.1s linear;
+    background-color: transparent;
+    border: solid 2px var(--color-1);
+    border-radius: 4px;
+    color: var(--color-1);
+    display: inline-block;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 5px;
+    padding: 10px;
+    line-height: 1em;
+    text-decoration:  none;
+    min-width: 120px;
+    outline: none;
+}
+.buttons button:hover {
+    background-color: var(--color-1);
+    color: #fff;
+}
+.buttons button:nth-child(2),
+.buttons button:nth-child(3) {
+    display: none;
+}
+
+@keyframes slideUp {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -600px;
+    }
+}
+@keyframes sideSway {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: 50px;
+    }
+}
